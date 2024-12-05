@@ -1,0 +1,88 @@
+# Example configuration for GoPlus2 component
+esphome:
+  name: goplus2-example
+
+esp32:
+  board: m5stack-core2
+  framework:
+    type: arduino
+
+# Enable logging
+logger:
+
+# Enable I2C - M5Stack Core2 uses different default pins
+i2c:
+  sda: GPIO32
+  scl: GPIO33
+  scan: true
+
+# GoPlus2 configuration
+goplus2:
+  id: goplus2_1
+
+# Example outputs
+output:
+  # Each servo is configured as a separate output
+  - platform: goplus2
+    id: servo_0
+    channel: 0
+  - platform: goplus2
+    id: servo_1
+    channel: 1
+  - platform: goplus2
+    id: servo_2
+    channel: 2
+  - platform: goplus2
+    id: servo_3
+    channel: 3
+
+# Example controls using the outputs
+number:
+  # Servo angle controls (0-180 degrees)
+  - platform: template
+    name: "Servo 0 Angle"
+    id: servo_0_angle
+    optimistic: true
+    min_value: 0
+    max_value: 180
+    step: 1
+    set_action:
+      - output.set_level:
+          id: servo_0
+          level: !lambda "return x / 180.0;"
+
+  - platform: template
+    name: "Servo 1 Angle"
+    id: servo_1_angle
+    optimistic: true
+    min_value: 0
+    max_value: 180
+    step: 1
+    set_action:
+      - output.set_level:
+          id: servo_1
+          level: !lambda "return x / 180.0;"
+
+  - platform: template
+    name: "Servo 2 Angle"
+    id: servo_2_angle
+    optimistic: true
+    min_value: 0
+    max_value: 180
+    step: 1
+    set_action:
+      - output.set_level:
+          id: servo_2
+          level: !lambda "return x / 180.0;"
+
+  - platform: template
+    name: "Servo 3 Angle"
+    id: servo_3_angle
+    optimistic: true
+    min_value: 0
+    max_value: 180
+    step: 1
+    set_action:
+      - output.set_level:
+          id: servo_3
+          level: !lambda "return x / 180.0;"
