@@ -6,7 +6,10 @@ namespace goplus2 {
 
 static const char *const TAG = "goplus2";
 
-void GoPlus2Component::setup() { ESP_LOGCONFIG(TAG, "Setting up GoPlus2..."); }
+void GoPlus2Component::setup() {
+  ESP_LOGCONFIG(TAG, "Setting up GoPlus2...");
+  set_i2c_address(GOPLUS2_ADDR);
+}
 
 void GoPlus2Component::dump_config() {
   ESP_LOGCONFIG(TAG, "GoPlus2:");

@@ -6,7 +6,8 @@
 namespace esphome {
 namespace goplus2 {
 
-// Constants from GoPlus2.h
+static const uint8_t GOPLUS2_ADDR = 0x38;
+
 static const uint8_t SERVO_ADDR = 0x00;
 static const uint8_t PULSE_ADDR = 0x10;
 
